@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0e0e10" media="(prefers-color-scheme: dark)" />
+    <title>日記処理</title>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png" />
+
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="日記処理" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <noscript>
+      <p style="padding: 24px; font-family: system-ui, sans-serif">
+        このアプリは JavaScript が必要です。
+      </p>
+    </noscript>
+
+    <script type="module" src="./js/app.js"></script>
+    <script>
+      // Service worker registration — keep scope at the directory containing this page,
+      // so the app stays isolated from other PWAs on the same GitHub Pages account.
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          const swUrl = new URL('./sw.js', document.baseURI);
+          const scope = new URL('./', document.baseURI);
+          navigator.serviceWorker
+            .register(swUrl.href, { scope: scope.href })
+            .catch((err) => console.warn('SW registration failed', err));
+        });
+      }
+    </script>
+  </body>
+</html>

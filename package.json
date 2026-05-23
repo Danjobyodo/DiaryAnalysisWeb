@@ -1,0 +1,6 @@
+{
+  "name": "diary-web",
+  "private": true,
+  "type": "module",
+  "description": "日記処理 Web版 — package.json exists only so that Node treats .js files as ES modules for the test runner."
+}
