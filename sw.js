@@ -1,7 +1,7 @@
 // Service worker — caches the static app shell so the PWA works offline.
 // Bump CACHE_VERSION whenever the asset list changes to flush old caches.
 
-const CACHE_VERSION = 'diary-web-v2';
+const CACHE_VERSION = 'diary-web-v3';
 const SCOPE_PATH = new URL('./', self.location).pathname;
 
 // Paths are relative to the scope, so the SW works on GitHub Pages subpaths

@@ -234,5 +234,14 @@ export function normalizeDiaryDateReferences(text) {
     (_, yyyy, m, d) =>
       `__DIARY_DATE__${yyyy}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}__`
   );
+
+  // English export: Sat, August 17, 2024 (also accept full weekday names).
+  const months = ['january', 'february', 'march', 'april', 'may', 'june',
+    'july', 'august', 'september', 'october', 'november', 'december'];
+  s = s.replace(
+    /\b(?:Mon(?:day)?|Tue(?:sday)?|Wed(?:nesday)?|Thu(?:rsday)?|Fri(?:day)?|Sat(?:urday)?|Sun(?:day)?),[ \t]+(January|February|March|April|May|June|July|August|September|October|November|December)[ \t]+(\d{1,2}),[ \t]+(\d{4})\b/gi,
+    (_, month, day, year) =>
+      `__DIARY_DATE__${year}-${String(months.indexOf(month.toLowerCase()) + 1).padStart(2, '0')}-${day.padStart(2, '0')}__`
+  );
   return s;
 }

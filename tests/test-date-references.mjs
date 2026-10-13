@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { normalizeDiaryDateReferences as normalize, DiaryParser, compareEntries } from '../js/parser.js';
+const cases = JSON.parse(fs.readFileSync(new URL('./date-reference-cases.json', import.meta.url)));
+for (const {forms, expected} of cases) for(const form of forms) assert.equal(normalize(form), expected);
+const forms = cases[7].forms.map(ref => `2025/08/03\n今度馬喰町駅に行きたいな。 ${ref} に通った駅。`);
+for(const a of forms) for(const b of forms) assert.deepEqual(compareEntries(DiaryParser.parseEntries(a),DiaryParser.parseEntries(b)), []);
+assert.equal(compareEntries(DiaryParser.parseEntries(forms[0]),DiaryParser.parseEntries(forms[2].replace('行きたいな','行きました')))[0].status,'contentChanged');
+assert.equal(compareEntries(DiaryParser.parseEntries(forms[0]),DiaryParser.parseEntries(forms[2].replace('August 17','August 18')))[0].status,'contentChanged');
+assert.equal(normalize('Sat, NotAMonth 17, 2024'), 'Sat, NotAMonth 17, 2024');
+console.log('All date-reference formats and comparison checks passed.');

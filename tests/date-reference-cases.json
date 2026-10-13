@@ -1,0 +1,118 @@
+[
+  {
+    "forms": [
+      "[[defaultJournal.17-01-2024]]",
+      "2024年1月17日(土)",
+      "Sat, January 17, 2024",
+      "Saturday, January 17, 2024"
+    ],
+    "expected": "__DIARY_DATE__2024-01-17__"
+  },
+  {
+    "forms": [
+      "[[defaultJournal.17-02-2024]]",
+      "2024年2月17日(土)",
+      "Sat, February 17, 2024",
+      "Saturday, February 17, 2024"
+    ],
+    "expected": "__DIARY_DATE__2024-02-17__"
+  },
+  {
+    "forms": [
+      "[[defaultJournal.17-03-2024]]",
+      "2024年3月17日(土)",
+      "Sat, March 17, 2024",
+      "Saturday, March 17, 2024"
+    ],
+    "expected": "__DIARY_DATE__2024-03-17__"
+  },
+  {
+    "forms": [
+      "[[defaultJournal.17-04-2024]]",
+      "2024年4月17日(土)",
+      "Sat, April 17, 2024",
+      "Saturday, April 17, 2024"
+    ],
+    "expected": "__DIARY_DATE__2024-04-17__"
+  },
+  {
+    "forms": [
+      "[[defaultJournal.17-05-2024]]",
+      "2024年5月17日(土)",
+      "Sat, May 17, 2024",
+      "Saturday, May 17, 2024"
+    ],
+    "expected": "__DIARY_DATE__2024-05-17__"
+  },
+  {
+    "forms": [
+      "[[defaultJournal.17-06-2024]]",
+      "2024年6月17日(土)",
+      "Sat, June 17, 2024",
+      "Saturday, June 17, 2024"
+    ],
+    "expected": "__DIARY_DATE__2024-06-17__"
+  },
+  {
+    "forms": [
+      "[[defaultJournal.17-07-2024]]",
+      "2024年7月17日(土)",
+      "Sat, July 17, 2024",
+      "Saturday, July 17, 2024"
+    ],
+    "expected": "__DIARY_DATE__2024-07-17__"
+  },
+  {
+    "forms": [
+      "[[defaultJournal.17-08-2024]]",
+      "2024年8月17日(土)",
+      "Sat, August 17, 2024",
+      "Saturday, August 17, 2024"
+    ],
+    "expected": "__DIARY_DATE__2024-08-17__"
+  },
+  {
+    "forms": [
+      "[[defaultJournal.17-09-2024]]",
+      "2024年9月17日(土)",
+      "Sat, September 17, 2024",
+      "Saturday, September 17, 2024"
+    ],
+    "expected": "__DIARY_DATE__2024-09-17__"
+  },
+  {
+    "forms": [
+      "[[defaultJournal.17-10-2024]]",
+      "2024年10月17日(土)",
+      "Sat, October 17, 2024",
+      "Saturday, October 17, 2024"
+    ],
+    "expected": "__DIARY_DATE__2024-10-17__"
+  },
+  {
+    "forms": [
+      "[[defaultJournal.17-11-2024]]",
+      "2024年11月17日(土)",
+      "Sat, November 17, 2024",
+      "Saturday, November 17, 2024"
+    ],
+    "expected": "__DIARY_DATE__2024-11-17__"
+  },
+  {
+    "forms": [
+      "[[defaultJournal.17-12-2024]]",
+      "2024年12月17日(土)",
+      "Sat, December 17, 2024",
+      "Saturday, December 17, 2024"
+    ],
+    "expected": "__DIARY_DATE__2024-12-17__"
+  },
+  {
+    "forms": [
+      "Ｓａｔ， Ａｕｇｕｓｔ １７， ２０２４",
+      "sat, august 17, 2024",
+      "2024年8月17日（ 土 ）"
+    ],
+    "expected": "__DIARY_DATE__2024-08-17__"
+  }
+]
