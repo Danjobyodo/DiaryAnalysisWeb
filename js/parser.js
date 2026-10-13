@@ -1,7 +1,7 @@
 // Diary parsing and analysis logic.
 // Mirrors the Swift implementation (DiaryParser / DiaryStatistics / DiaryViewModel) verbatim.
 
-const TRIM_RE = /^[\s　﻿]+|[\s　﻿]+$/g;
+const TRIM_RE = /^[\u0009-\u000D\u0020\u0085\u00A0\u1680\u2000-\u200B\u2028\u2029\u202F\u205F\u3000]+|[\u0009-\u000D\u0020\u0085\u00A0\u1680\u2000-\u200B\u2028\u2029\u202F\u205F\u3000]+$/g;
 
 function trimWS(s) {
   return s.replace(TRIM_RE, '');
@@ -11,36 +11,20 @@ const _segmenter = (typeof Intl !== 'undefined' && Intl.Segmenter)
   ? new Intl.Segmenter('ja', { granularity: 'grapheme' })
   : null;
 
-const BLANK_RE = /[\s　﻿]/g;
-
-// Detects characters whose grapheme-cluster boundary may differ from a code-point
-// boundary: surrogate pairs (any emoji/SMP char), ZWJ, variation selectors, regional
-// indicators, and combining-mark blocks. If none of these appear, code-point count
-// equals grapheme-cluster count, so we can skip the (slow) Intl.Segmenter pass.
-const COMPLEX_RE =
-  /[\uD800-\uDFFF‍︀-️̀-ͯ᪰-᫿᷀-᷿⃐-⃿︠-︯]/;
-
-function isBlank(ch) {
-  if (ch === ' ' || ch === '　' || ch === '\n' || ch === '\t' || ch === '\r') return true;
-  return /^[\s　﻿]+$/.test(ch);
-}
+// Swift CharacterSet.whitespacesAndNewlines (including U+200B, excluding U+FEFF).
+const BLANK_CHARACTER_RE = /^[\u0009-\u000D\u0020\u0085\u00A0\u1680\u2000-\u200B\u2028\u2029\u202F\u205F\u3000]+$/u;
 
 export function countDiaryCharacters(text) {
   if (!text) return 0;
-  // Fast path: strip whitespace via regex, then count code units (== chars for BMP).
-  const stripped = text.replace(BLANK_RE, '');
-  if (!COMPLEX_RE.test(stripped)) {
-    return stripped.length;
+  if (!_segmenter) {
+    throw new Error('正確な文字数カウントには Intl.Segmenter 対応ブラウザが必要です。');
   }
-  // Slow path: use grapheme segmentation so emoji ZWJ sequences count as 1.
-  if (_segmenter) {
-    let count = 0;
-    for (const _ of _segmenter.segment(stripped)) count++;
-    return count;
-  }
-  // Last-resort fallback: code-point iteration (surrogate pairs as 1).
+  // Match Swift: segment the original text first, then skip whitespace-only clusters.
+  // In particular, half-width kana plus dakuten/handakuten counts as one character.
   let count = 0;
-  for (const _ of stripped) count++;
+  for (const { segment } of _segmenter.segment(text)) {
+    if (!BLANK_CHARACTER_RE.test(segment)) count++;
+  }
   return count;
 }
 
